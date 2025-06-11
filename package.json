@@ -1,0 +1,85 @@
+{
+  "name": "@carlwr/fastcheck-utils",
+  "description": "improved generators for fast-check",
+  "keywords": [
+    "fast-check",
+    "arbitraries",
+    "generators"
+  ],
+  "author": {
+    "name": "carlwr",
+    "url": "https://github.com/carlwr"
+  },
+  "publisher": "carlwr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlwr/fastcheck-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlwr/fastcheck-utils/issues"
+  },
+  "homepage": "https://github.com/carlwr/fastcheck-utils#README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsx build.ts",
+    "build:dev": "tsx build.ts --dev",
+    "prebuild": "pnpm run lint && pnpm run typecheck",
+    "prepublishOnly": "pnpm run build",
+    "publish:dry": "pnpm publish --dry-run",
+    "publish:release": "pnpm publish",
+    "version:patch": "pnpm version patch",
+    "version:minor": "pnpm version minor",
+    "version:major": "pnpm version major",
+    "lint": "biome check",
+    "imports:sort": "biome check --linter-enabled=false --organize-imports-enabled=true --write",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "qa": "pnpm typecheck && pnpm lint && pnpm test",
+    "readme": "tsx scripts/makeReadme.ts",
+    "LAST_dummy": "false"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "peerDependencies": {
+    "fast-check": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@carlwr/typescript-extra": "0.2.0",
+    "@fast-check/vitest": "^0.2.1",
+    "@types/node": "^22.15.21",
+    "arg": "^5.0.2",
+    "read-pkg": "^9.0.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.4",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-markdown": "^4.6.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4",
+    "zod": "^3.25.56",
+    "zzz_LAST_dummy": "npm:empty-npm-package@1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

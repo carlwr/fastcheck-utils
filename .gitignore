@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.aux/
+.aider.*
+**/.claude/settings.local.json
+.cursor
+README.md
