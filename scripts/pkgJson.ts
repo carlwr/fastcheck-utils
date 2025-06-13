@@ -28,4 +28,4 @@ export const repoUrl = pkgJson.repository.url
   .replace(/^git\+/, '')
   .replace(/\.git$/, '')
 
-export const npmUrl = `https://www.npmjs.com/package/${name}`
+export const npmUrl = `https://www.npmjs.com/package/${pkgJson.name}`
