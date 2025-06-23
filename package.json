@@ -64,19 +64,19 @@
     "fast-check": ">=3.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@carlwr/typescript-extra": "0.2.0",
+    "@biomejs/biome": "^2.0.5",
+    "@carlwr/typescript-extra": "^0.4.0",
     "@fast-check/vitest": "^0.2.1",
-    "@types/node": "^22.15.21",
+    "@types/node": "^24.0.3",
     "arg": "^5.0.2",
     "read-pkg": "^9.0.1",
     "tsup": "^8.5.0",
-    "tsx": "^4.19.4",
+    "tsx": "^4.20.3",
     "typedoc": "^0.28.5",
-    "typedoc-plugin-markdown": "^4.6.4",
+    "typedoc-plugin-markdown": "^4.7.0",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.4",
-    "zod": "^3.25.56",
+    "vitest": "^3.2.4",
+    "zod": "^3.25.67",
     "zzz_LAST_dummy": "npm:empty-npm-package@1.0.0"
   },
   "engines": {
