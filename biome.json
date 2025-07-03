@@ -3,6 +3,12 @@
   "files": {
     "includes": ["src/**/*.ts", "build.ts", "test/**/*.ts", "vitest.config.ts"]
   },
+  "json": {
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": true
+    }
+  },
   "vcs": {
     "enabled": false,
     "clientKind": "git"
