@@ -19,7 +19,7 @@ async function buildProject() {
     entry: {
       'index': 'src/index.ts'
     },
-    format: ['esm'],
+    format: ['esm', 'cjs'],
     dts: true,
     sourcemap: true,
     clean: true,
