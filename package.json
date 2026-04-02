@@ -58,7 +58,7 @@
     "readme": "tsx scripts/makeReadme.ts",
     "LAST_dummy": "false"
   },
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.23.0",
   "peerDependencies": {
     "fast-check": ">=3.0.0"
   },
