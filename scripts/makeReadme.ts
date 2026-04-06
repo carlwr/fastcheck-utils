@@ -171,7 +171,7 @@ async function mkReadme(): Promise<void> {
     return `### \`${funcName}\`\n\n${rendered}`
   }).join('\n\n')
 
-  const readme = `${preamble}\n\n${renderedDocs}`
+  const readme = `${preamble}\n\n${renderedDocs}\n`
 
   // print what the current dir is:
   console.log(`current dir: ${process.cwd()}`)
