@@ -47,23 +47,22 @@
   ],
   "scripts": {
     "build": "tsx build.ts",
-    "build:dev": "tsx build.ts --dev",
-    "prebuild": "pnpm run lint && pnpm run typecheck",
-    "prepublishOnly": "pnpm run build",
-    "publish:dry": "pnpm publish --dry-run",
+    "prepack": "pnpm run qa >/dev/null && pnpm run build && pnpm run readme",
+    "publish:dry": "pnpm pack --dry-run",
     "publish:release": "pnpm publish",
     "version:patch": "pnpm version patch",
     "version:minor": "pnpm version minor",
     "version:major": "pnpm version major",
     "lint": "biome check",
     "typecheck": "tsc --noEmit",
+    "format": "biome check --error-on-warnings --write",
     "test": "vitest run",
     "test:watch": "vitest",
     "qa": "pnpm typecheck && pnpm lint && pnpm test",
     "readme": "tsx scripts/makeReadme.ts",
     "LAST_dummy": "false"
   },
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.33.0",
   "peerDependencies": {
     "fast-check": "^4.6.0"
   },
