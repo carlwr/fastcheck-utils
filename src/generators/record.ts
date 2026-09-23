@@ -64,7 +64,7 @@ function isAllKeysRequired(
 ): boolean {
   return (
     requiredKeys.length === allKeys.length &&
-    allKeys.every(requiredKeys.includes)
+    allKeys.every(k => requiredKeys.includes(k))
   )
 }
 
