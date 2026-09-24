@@ -1,4 +1,6 @@
 allowBuilds:
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@carlwr/typescript-extra@0.13.0'
 onlyBuiltDependencies:
   - esbuild

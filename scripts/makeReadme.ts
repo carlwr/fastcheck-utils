@@ -120,9 +120,36 @@ function sections2block(secs: [Section, ...Section[]]): string {
   return block
 }
 
+const isHeading = (name: string) => (sec: Section) =>
+  sec.heading?.[1].trim().toLowerCase() === name
+
+const splitRow = (row: string): string[] =>
+  row.trim().replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map(trim)
+
+function renderParams(sec: Section): string|undefined {
+  const [header, _sep, ...rows] = sec.contents.split('\n').filter(l => l.startsWith('|'))
+  const descIdx = header ? splitRow(header).indexOf('Description') : -1
+  if (descIdx < 0) return undefined
+  const items = rows
+    .map(splitRow)
+    .filter(cells => cells[descIdx])
+    .map(cells => `- ${cells[0]}: ${cells[descIdx]}`)
+  return isNonEmpty(items) ? ['parameters:', '', ...items].join('\n') : undefined
+}
+
+function renderReturns(sec: Section): string|undefined {
+  // first paragraph is the return type
+  const desc = sec.contents.split(/\n\s*\n/).slice(1).join('\n\n').trim()
+  return desc ? `returns: ${desc}` : undefined
+}
+
 function renderSections(secs: [Section, ...Section[]]): string {
   const block = sections2block(secs)
-  const contents = secs[0].contents
+  const extras = [
+    ...secs.filter(isHeading('parameters')).map(renderParams),
+    ...secs.filter(isHeading('returns'   )).map(renderReturns),
+  ].filter(isDefined)
+  const contents = [secs[0].contents, ...extras].join('\n\n')
   return ['```ts', block, '```', contents].join('\n')
 }
 

@@ -1,7 +1,7 @@
 
 # fastcheck-utils
 
-_improved generators for [fast-check](https://github.com/dubzzz/fast-check)_
+_utilities and improved generators for [fast-check](https://github.com/dubzzz/fast-check)_
 
 Links:
 * github: [github.com/carlwr/fastcheck-utils](https://github.com/carlwr/fastcheck-utils)
@@ -25,8 +25,47 @@ I-the-human implemented everything up to and including _v0.5.2_. For later versi
 
 ---
 
-## Generators
+## Utilities and generators
 
+
+### `coverage`
+
+```ts
+function coverage<K>(requirements: Readonly<Record<K, number>>): Coverage<K>
+```
+Add minimum coverage checks to a property test.
+
+In a test, the user first calls `coverage`, specifying the labels to use and, for each label, a minimum percentage of test cases that must "hit" the label for the coverage to be considered sufficient. The user then adds conditional calls to `hit()` to the test.
+
+If the property test itself succeeds, the number of test cases that were run is compared to the number of hits for each label. If the specified minimum percentage was not met for at least one label, the property test still fails, with a useful message.
+
+For an introduction to the coverage feature, the primary resource is the [example file](https://github.com/carlwr/fastcheck-utils/blob/main/test/coverage.example.test.ts).
+
+Calls to `hit()` must specify one of the registered labels. This is enforced on the type level.
+
+If the property fails, that error takes precedence and coverage is not asserted.
+
+When counting the number of test cases (the denominator) and the number of hits,
+- discarded cases are not included
+- if a label is hit more than once, it is still only counted once
+- _examples_ are included in the count of number of test cases (they contribute to the denominator)
+- shrinking runs are not included (which does not matter, since in the case of the property failing, coverage is not checked anyways)
+
+If there are no accepted test cases in a test, the coverage check will result in a coverage failure.
+
+It is strongly recommended to use a fixed seed for tests that include coverage checks.
+
+If a property is _replayed_, the coverage test will be ignored (since it isn't meaningful in replays).
+
+`hit()` can only be called from a test - not from within an arbitrary or `fc.beforeEach`. If you want to use coverage to assert on the distribution of an arbitrary, it is suggested to write a dedicated property test.
+
+If you use the `fc.ignoreEqualValues()` plugin: if used it must come before this coverage plugin, e.g. `[fc.ignoreEqualValues(), myCoverage.plugin]`.
+
+parameters:
+
+- `requirements`: A record where the user specifies labels as keys and required hit percentages as values
+
+returns: An object with the `hit()` function for the user to call, and the `plugin` value to pass to something that accepts a `fast-check` plugin, e.g. `fast-check`'s `fc.assert`/`fc.check`, or `@fast-check/vitest`'s `it.prop`/`test.prop`. The plugin will be ignored if used with `fc.sample` or `fc.statistics`. Passing it to `fc.check` will result in coverage failures to throw, rather than report the failure. Passing it to `fc.installGlobalPlugin` does not make sense since that would mean the same requirements would be applied to all checks.
 
 ### `element`
 

@@ -3,7 +3,7 @@ import * as pkg from "./pkgJson.js";
 const preamble =  `
 # ${pkg.name}
 
-_improved generators for [fast-check](https://github.com/dubzzz/fast-check)_
+_utilities and improved generators for [fast-check](https://github.com/dubzzz/fast-check)_
 
 Links:
 * github: ${linkify(pkg.repoUrl)}
@@ -27,7 +27,7 @@ I-the-human implemented everything up to and including _v0.5.2_. For later versi
 
 ---
 
-## Generators
+## Utilities and generators
 `
 
 export default preamble
