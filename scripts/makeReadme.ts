@@ -2,7 +2,8 @@
 
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { getMatch, isDefined, isEmpty, isNonEmpty, mapNonEmpty, rm_rf, trim } from '@carlwr/typescript-extra';
+import { getMatch, isDefined, isEmpty, isNonEmpty, mapNonEmpty, trim } from '@carlwr/typescript-extra';
+import { rm_rf } from '@carlwr/typescript-extra/node';
 import { Application, type TypeDocOptions } from 'typedoc';
 import type { PluginOptions } from 'typedoc-plugin-markdown';
 import preamble from './readmePreamble.js';
