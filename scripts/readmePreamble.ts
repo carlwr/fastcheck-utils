@@ -5,6 +5,8 @@ const preamble =  `
 
 _utilities and improved generators for [fast-check](https://github.com/dubzzz/fast-check)_
 
+${badges()}
+
 Links:
 * github: ${linkify(pkg.repoUrl)}
 * npm: ${linkify(pkg.npmUrl)}
@@ -36,4 +38,15 @@ export default preamble
 function linkify(url: string): string {
   const linkText = url.replace(/^https?:\/\//, '')
   return `[${linkText}](${url})`
+}
+
+function badges(): string {
+  const repo = pkg.repoUrl.replace(/^https:\/\/github\.com\//, '')
+  const npm  = pkg.pkgJson.name
+  return [
+    `[![ci](https://img.shields.io/github/actions/workflow/status/${repo}/ci.yaml?branch=main&logo=github&label=ci)](${pkg.repoUrl}/actions/workflows/ci.yaml)`,
+    `[![npm](https://img.shields.io/npm/v/${npm}?logo=npm)](${pkg.npmUrl})`,
+    `[![node](https://img.shields.io/node/v/${npm}?logo=nodedotjs)](${pkg.npmUrl})`,
+    `[![license](https://img.shields.io/npm/l/${npm})](${pkg.repoUrl}/blob/main/LICENSE)`,
+  ].join('\n')
 }

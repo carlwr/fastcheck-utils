@@ -3,6 +3,11 @@
 
 _utilities and improved generators for [fast-check](https://github.com/dubzzz/fast-check)_
 
+[![ci](https://img.shields.io/github/actions/workflow/status/carlwr/fastcheck-utils/ci.yaml?branch=main&logo=github&label=ci)](https://github.com/carlwr/fastcheck-utils/actions/workflows/ci.yaml)
+[![npm](https://img.shields.io/npm/v/@carlwr/fastcheck-utils?logo=npm)](https://www.npmjs.com/package/@carlwr/fastcheck-utils)
+[![node](https://img.shields.io/node/v/@carlwr/fastcheck-utils?logo=nodedotjs)](https://www.npmjs.com/package/@carlwr/fastcheck-utils)
+[![license](https://img.shields.io/npm/l/@carlwr/fastcheck-utils)](https://github.com/carlwr/fastcheck-utils/blob/main/LICENSE)
+
 Links:
 * github: [github.com/carlwr/fastcheck-utils](https://github.com/carlwr/fastcheck-utils)
 * npm: [www.npmjs.com/package/@carlwr/fastcheck-utils](https://www.npmjs.com/package/@carlwr/fastcheck-utils)
