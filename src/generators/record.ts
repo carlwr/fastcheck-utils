@@ -2,7 +2,7 @@ import * as fc from 'fast-check';
 
 
 /**
- * like {@link fc.record}, but with
+ * like {@linkcode fc.record}, but with
  * - `noNullPrototype` _true_ by default
  * - stronger typing
  *

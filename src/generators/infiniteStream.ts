@@ -8,10 +8,10 @@ interface InfiniteStream<T> extends fc.Stream<T> {}
 /**
  * Generate an infinite stream of values.
  *
- * This arbitrary is a minimal wrapper around {@link fc.infiniteStream} allowing access to the generated values in a type-safe way through the {@link getNext} helper.
+ * This arbitrary is a minimal wrapper around {@linkcode fc.infiniteStream} allowing access to the generated values in a type-safe way through the {@linkcode getNext} helper.
  *
  * features and non-features:
- * - does _not_ shrink at all unfortunately - since {@link fc.infiniteStream} doesn't
+ * - does _not_ shrink at all unfortunately - since {@linkcode fc.infiniteStream} doesn't
  * - _does_ print a meaningful counterexample and execution summary on failure, that includes some of the previously tried values in the stream
  *
  * @example
@@ -28,7 +28,7 @@ function infiniteStream<T>(arb: fc.Arbitrary<T>): fc.Arbitrary<InfiniteStream<T>
 }
 
 /**
- * Get next value from an {@link InfiniteStream} object yielded by {@link infiniteStream}.
+ * Get next value from an {@linkcode InfiniteStream} object yielded by {@linkcode infiniteStream}.
  *
  * Throws if the stream is unexpectedly done (it is my understanding that this should never happen).
  */

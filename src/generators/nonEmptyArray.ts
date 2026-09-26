@@ -5,7 +5,7 @@ export { nonEmptyArray }
 /**
  * Generate a non-empty array.
  *
- * If a {@link constraints} parameter object is passed, it will be honored (function throws if `{minLength: 0}` is specified).
+ * If a {@linkcode constraints} parameter object is passed, it will be honored (function throws if `{minLength: 0}` is specified).
  *
  * @example
  * import * as fcu from 'fastcheck-utils'

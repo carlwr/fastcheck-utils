@@ -6,7 +6,7 @@ import * as fc from 'fast-check';
  *
  * Shrinking is done towards the first element.
  *
- * Similar to {@link fc.constantFrom}, but _shrinks across all elements_ - {@link fc.constantFrom} only shrinks towards the first element.
+ * Similar to {@linkcode fc.constantFrom}, but _shrinks across all elements_ - {@linkcode fc.constantFrom} only shrinks towards the first element.
  *
  * @example
  * import * as fcu from 'fastcheck-utils'
