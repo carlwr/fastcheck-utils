@@ -8,7 +8,7 @@ export { nonEmptyArray }
  * If a {@linkcode constraints} parameter object is passed, it will be honored (function throws if `{minLength: 0}` is specified).
  *
  * @example
- * import * as fcu from 'fastcheck-utils'
+ * import * as fcu from '@carlwr/fastcheck-utils'
  * import * as fc from 'fast-check'
  *
  * const arb = fcu.nonEmptyArray(fc.nat({max:5}))

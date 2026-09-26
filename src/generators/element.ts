@@ -9,7 +9,7 @@ import * as fc from 'fast-check';
  * Similar to {@linkcode fc.constantFrom}, but _shrinks across all elements_ - {@linkcode fc.constantFrom} only shrinks towards the first element.
  *
  * @example
- * import * as fcu from 'fastcheck-utils'
+ * import * as fcu from '@carlwr/fastcheck-utils'
  * import * as fc from 'fast-check'
  *
  * const arb = fcu.element(['a', 'b', 'c'] as const)

@@ -42,7 +42,7 @@ Similar to `fc.constantFrom`, but _shrinks across all elements_ - `fc.constantFr
 example:
 
 ```ts
-import * as fcu from 'fastcheck-utils'
+import * as fcu from '@carlwr/fastcheck-utils'
 import * as fc from 'fast-check'
 
 const arb = fcu.element(['a', 'b', 'c'] as const)
@@ -75,7 +75,7 @@ features and non-features:
 example:
 
 ```ts
-import * as fcu from 'fastcheck-utils'
+import * as fcu from '@carlwr/fastcheck-utils'
 import * as fc from 'fast-check'
 
 const arb = fcu.infiniteStream(fc.nat({max:10}))
@@ -96,7 +96,7 @@ If a `constraints` parameter object is passed, it will be honored (function thro
 example:
 
 ```ts
-import * as fcu from 'fastcheck-utils'
+import * as fcu from '@carlwr/fastcheck-utils'
 import * as fc from 'fast-check'
 
 const arb = fcu.nonEmptyArray(fc.nat({max:5}))
@@ -114,7 +114,7 @@ Generate a non-empty array of unique values.
 example:
 
 ```ts
-import * as fcu from 'fastcheck-utils'
+import * as fcu from '@carlwr/fastcheck-utils'
 import * as fc from 'fast-check'
 
 const arb = fcu.nonEmptyUniqueArray(fc.nat({max:10}))
@@ -138,7 +138,7 @@ like `fc.record`, but with
 example:
 
 ```ts
-import * as fcu from 'fastcheck-utils'
+import * as fcu from '@carlwr/fastcheck-utils'
 import * as fc from 'fast-check'
 
 const arb = fcu.record({name: fc.string(), age: fc.nat({max: 100})})

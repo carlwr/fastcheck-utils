@@ -7,7 +7,7 @@ import * as fc from 'fast-check';
  * - stronger typing
  *
  * @example
- * import * as fcu from 'fastcheck-utils'
+ * import * as fcu from '@carlwr/fastcheck-utils'
  * import * as fc from 'fast-check'
  *
  * const arb = fcu.record({name: fc.string(), age: fc.nat({max: 100})})

@@ -15,7 +15,7 @@ interface InfiniteStream<T> extends fc.Stream<T> {}
  * - _does_ print a meaningful counterexample and execution summary on failure, that includes some of the previously tried values in the stream
  *
  * @example
- * import * as fcu from 'fastcheck-utils'
+ * import * as fcu from '@carlwr/fastcheck-utils'
  * import * as fc from 'fast-check'
  *
  * const arb = fcu.infiniteStream(fc.nat({max:10}))

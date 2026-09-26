@@ -7,7 +7,7 @@ export { nonEmptyUniqueArray }
  * Generate a non-empty array of unique values.
  *
  * @example
- * import * as fcu from 'fastcheck-utils'
+ * import * as fcu from '@carlwr/fastcheck-utils'
  * import * as fc from 'fast-check'
  *
  * const arb = fcu.nonEmptyUniqueArray(fc.nat({max:10}))
