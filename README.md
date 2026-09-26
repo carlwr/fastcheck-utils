@@ -61,11 +61,10 @@ If a property is _replayed_, the coverage test will be ignored (since it isn't m
 
 If you use the `fc.ignoreEqualValues()` plugin: if used it must come before this coverage plugin, e.g. `[fc.ignoreEqualValues(), myCoverage.plugin]`.
 
-parameters:
+**parameters / returns:**
 
-- `requirements`: A record where the user specifies labels as keys and required hit percentages as values
-
-returns: An object with the `hit()` function for the user to call, and the `plugin` value to pass to something that accepts a `fast-check` plugin, e.g. `fast-check`'s `fc.assert`/`fc.check`, or `@fast-check/vitest`'s `it.prop`/`test.prop`. The plugin will be ignored if used with `fc.sample` or `fc.statistics`. Passing it to `fc.check` will result in coverage failures to throw, rather than report the failure. Passing it to `fc.installGlobalPlugin` does not make sense since that would mean the same requirements would be applied to all checks.
+- _param_ `requirements`: A record where the user specifies labels as keys and required hit percentages as values
+- _returns:_ An object with the `hit()` function for the user to call, and the `plugin` value to pass to something that accepts a `fast-check` plugin, e.g. `fast-check`'s `fc.assert`/`fc.check`, or `@fast-check/vitest`'s `it.prop`/`test.prop`. The plugin will be ignored if used with `fc.sample` or `fc.statistics`. Passing it to `fc.check` will result in coverage failures to throw, rather than report the failure. Passing it to `fc.installGlobalPlugin` does not make sense since that would mean the same requirements would be applied to all checks.
 
 ### `element`
 

@@ -126,30 +126,32 @@ const isHeading = (name: string) => (sec: Section) =>
 const splitRow = (row: string): string[] =>
   row.trim().replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map(trim)
 
-function renderParams(sec: Section): string|undefined {
+function renderParams(sec: Section): string[] {
   const [header, _sep, ...rows] = sec.contents.split('\n').filter(l => l.startsWith('|'))
   const descIdx = header ? splitRow(header).indexOf('Description') : -1
-  if (descIdx < 0) return undefined
-  const items = rows
+  if (descIdx < 0) return []
+  return rows
     .map(splitRow)
     .filter(cells => cells[descIdx])
-    .map(cells => `- ${cells[0]}: ${cells[descIdx]}`)
-  return isNonEmpty(items) ? ['parameters:', '', ...items].join('\n') : undefined
+    .map(cells => `- _param_ ${cells[0]}: ${cells[descIdx]}`)
 }
 
-function renderReturns(sec: Section): string|undefined {
+function renderReturns(sec: Section): string[] {
   // first paragraph is the return type
   const desc = sec.contents.split(/\n\s*\n/).slice(1).join('\n\n').trim()
-  return desc ? `returns: ${desc}` : undefined
+  return desc ? [`- _returns:_ ${desc}`] : []
 }
 
 function renderSections(secs: [Section, ...Section[]]): string {
   const block = sections2block(secs)
-  const extras = [
-    ...secs.filter(isHeading('parameters')).map(renderParams),
-    ...secs.filter(isHeading('returns'   )).map(renderReturns),
-  ].filter(isDefined)
-  const contents = [secs[0].contents, ...extras].join('\n\n')
+  const params  = secs.filter(isHeading('parameters')).flatMap(renderParams)
+  const returns = secs.filter(isHeading('returns'   )).flatMap(renderReturns)
+  const label = [
+    ...(isNonEmpty(params ) ? ['parameters'] : []),
+    ...(isNonEmpty(returns) ? ['returns'   ] : []),
+  ].join(' / ')
+  const list = label ? [`**${label}:**\n\n${[...params, ...returns].join('\n')}`] : []
+  const contents = [secs[0].contents, ...list].join('\n\n')
   return ['```ts', block, '```', contents].join('\n')
 }
 
