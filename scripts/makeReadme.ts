@@ -70,7 +70,7 @@ function parseDoc(doc: Doc): [Section,...Section[]] {
 
   const docContents = doc.contents
     .replace(/^#+\s+example.*/gmi, 'example:')
-    .replace(/\[(.*?)\]\(.*?\)/g, '`$1`')
+    .replace(/\[`?([^\]`]*)`?\]\((?!https?:)[^)]*\)/g, '`$1`')
 
   const parts = docContents.split(/^(?=#+\s+.+)/m)
   if (!isNonEmpty(parts)) throw new Error(`No parts in ${doc.path}`)
