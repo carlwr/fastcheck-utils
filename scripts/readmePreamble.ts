@@ -23,7 +23,7 @@ npm install ${pkg.pkgJson.name}
 
 This \`README.md\` file, and any _JSDoc_ documentation, is written entirely by me, Carl, a human developer. [Agents are not allowed][AGENTS.md] to touch the prose of these.
 
-I-the-human implemented everything up to and including _v0.5.2_. For later versions, agentic tools may be used as a development tool; with myself as the reviewer and ultimate decision-maker. I am and will remain the sole author of this \`README.md\` file and any _JSDoc_.
+I-the-human implemented everything up to and including _v0.5.2_. For later versions, agentic tools may be used as a development aid; with myself as the reviewer and ultimate decision-maker. I am and will remain the sole author of this \`README.md\` file and any _JSDoc_.
 
 [AGENTS.md]: ./AGENTS.md
 
