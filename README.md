@@ -58,7 +58,7 @@ When counting the number of test cases (the denominator) and the number of hits,
 
 If there are no accepted test cases in a test, the coverage check will result in a coverage failure.
 
-It is strongly recommended to use a fixed seed for tests that include coverage checks.
+It is **strongly recommended to use a fixed seed** for tests that include coverage checks. The implementation does not perform any statistics/confidence calculations to dynamically adjust the number of test cases. This means that a fixed seed is the only safe way to avoid flaky tests.
 
 If a property is _replayed_, the coverage test will be ignored (since it isn't meaningful in replays).
 
@@ -66,10 +66,12 @@ If a property is _replayed_, the coverage test will be ignored (since it isn't m
 
 If you use the `fc.ignoreEqualValues()` plugin: if used it must come before this coverage plugin, e.g. `[fc.ignoreEqualValues(), myCoverage.plugin]`.
 
+**Tip!:** To measure the actual distributions in order to decide a minimum limit, force all labels to fail by e.g. requiring 100 for each of them. The reported failures will include the actual hit rates.
+
 **parameters / returns:**
 
 - _param_ `requirements`: A record where the user specifies labels as keys and required hit percentages as values
-- _returns:_ An object with the `hit()` function for the user to call, and the `plugin` value to pass to something that accepts a `fast-check` plugin, e.g. `fast-check`'s `fc.assert`/`fc.check`, or `@fast-check/vitest`'s `it.prop`/`test.prop`. The plugin will be ignored if used with `fc.sample` or `fc.statistics`. Passing it to `fc.check` will result in coverage failures to throw, rather than report the failure. Passing it to `fc.installGlobalPlugin` does not make sense since that would mean the same requirements would be applied to all checks.
+- _returns:_ An object with the `hit()` function for the user to call, and the `plugin` value to pass to something that accepts a `fast-check` plugin, e.g. `fast-check`'s `fc.assert`/`fc.check`, or `@fast-check/vitest`'s `it.prop`/`test.prop`. The plugin will be ignored if used with `fc.sample` or `fc.statistics`. Passing it to `fc.check` will make coverage failures throw, rather than appearing in the returned details. Passing it to `fc.installGlobalPlugin` does not make sense since that would mean the same requirements would be applied to all checks.
 
 ### `element`
 
