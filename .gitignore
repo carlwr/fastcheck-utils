@@ -4,4 +4,4 @@ dist/
 .aider.*
 **/.claude/settings.local.json
 .cursor
-
+.non-vcs/
