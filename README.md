@@ -76,7 +76,7 @@ If you use the `fc.ignoreEqualValues()` plugin: if used it must come before this
 ### `element`
 
 ```ts
-function element<T>(xs: readonly [T, T]): Arbitrary<T>
+function element<T>(xs: readonly [T, ...T[]]): fc.Arbitrary<T>
 ```
 Randomly choose one of the constant array values.
 
@@ -107,7 +107,7 @@ Throws if the stream is unexpectedly done (it is my understanding that this shou
 ### `infiniteStream`
 
 ```ts
-function infiniteStream<T>(arb: Arbitrary<T>): Arbitrary<InfiniteStream<T>>
+function infiniteStream<T>(arb: fc.Arbitrary<T>): fc.Arbitrary<InfiniteStream<T>>
 ```
 Generate an infinite stream of values.
 
@@ -132,7 +132,7 @@ console.log(fcu.getNext(stream))  // 2
 ### `nonEmptyArray`
 
 ```ts
-function nonEmptyArray<T>(arb: Arbitrary<T>, constraints?: ArrayConstraints): Arbitrary<[T, ...T[]]>
+function nonEmptyArray<T>(arb: fc.Arbitrary<T>, constraints?: fc.ArrayConstraints): fc.Arbitrary<[T, ...T[]]>
 ```
 Generate a non-empty array.
 
@@ -152,7 +152,7 @@ console.log(sample)  // [5, 4, 2, 2, 5, 0, 3, 1, 5, 3, 1]
 ### `nonEmptyUniqueArray`
 
 ```ts
-function nonEmptyUniqueArray<T, U = T>(arb: Arbitrary<T>, constraints?: UniqueArrayConstraints<T, U>): Arbitrary<[T, ...T[]]>
+function nonEmptyUniqueArray<T, U = T>(arb: fc.Arbitrary<T>, constraints?: fc.UniqueArrayConstraints<T, U>): fc.Arbitrary<[T, ...T[]]>
 ```
 Generate a non-empty array of unique values.
 
@@ -170,11 +170,11 @@ console.log(sample)  // [2, 6, 5, 9, 4, 7, 10, 3, 1, 0, 8]
 ### `record`
 
 ```ts
-function record<T>(model: Model<T>): Arbitrary<ExactRecord<T>>
+function record<T>(model: Model<T>): fc.Arbitrary<ExactRecord<T>>
 
-function record<T>(model: Model<T>, constr: AllKeysRequired<T>): Arbitrary<ExactRecord<T>>
+function record<T>(model: Model<T>, constr: AllKeysRequired<T>): fc.Arbitrary<ExactRecord<T>>
 
-function record<T, K extends string | number | symbol>(model: Model<T>, constr: SomeKeysRequired<T, K>): Arbitrary<{ [K in string | number | symbol]: (Partial<T> & Pick<T, K & keyof T>)[K] }>
+function record<T, K extends keyof T>(model: Model<T>, constr: SomeKeysRequired<T, K>): fc.Arbitrary<fc.RecordValue<T, K>>
 ```
 like `fc.record`, but with
 - `noNullPrototype` _true_ by default

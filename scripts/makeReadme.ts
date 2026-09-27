@@ -6,6 +6,7 @@ import { getMatch, isDefined, isEmpty, isNonEmpty, mapNonEmpty, trim } from '@ca
 import { rm_rf } from '@carlwr/typescript-extra/node';
 import { Application, type TypeDocOptions } from 'typedoc';
 import type { PluginOptions } from 'typedoc-plugin-markdown';
+import { useDeclaredSignatureTypes } from './makeReadmeSigFix.js';
 import preamble from './readmePreamble.js';
 
 /* hacky, temporary implementation for creating the API section of the readme:
@@ -177,6 +178,7 @@ async function readDocs(dir: string): Promise<Doc[]> {
 async function mkReadme(): Promise<void> {
 
   const app = await Application.bootstrapWithPlugins(pluginOptions);
+  useDeclaredSignatureTypes(app)
 
   const project = await app.convert();
   if (!project) throw new Error('Failed to convert project');
