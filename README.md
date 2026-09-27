@@ -36,7 +36,7 @@ I-the-human implemented everything up to and including _v0.5.2_. For later versi
 ### `coverage`
 
 ```ts
-function coverage<K>(requirements: Readonly<Record<K, number>>): Coverage<K>
+function coverage<K extends string>(requirements: Readonly<Record<K, number>>): Coverage<K>
 ```
 Add minimum coverage checks to a property test.
 
@@ -152,7 +152,7 @@ console.log(sample)  // [5, 4, 2, 2, 5, 0, 3, 1, 5, 3, 1]
 ### `nonEmptyUniqueArray`
 
 ```ts
-function nonEmptyUniqueArray<T, U>(arb: Arbitrary<T>, constraints?: UniqueArrayConstraints<T, U>): Arbitrary<[T, ...T[]]>
+function nonEmptyUniqueArray<T, U = T>(arb: Arbitrary<T>, constraints?: UniqueArrayConstraints<T, U>): Arbitrary<[T, ...T[]]>
 ```
 Generate a non-empty array of unique values.
 
@@ -174,7 +174,7 @@ function record<T>(model: Model<T>): Arbitrary<ExactRecord<T>>
 
 function record<T>(model: Model<T>, constr: AllKeysRequired<T>): Arbitrary<ExactRecord<T>>
 
-function record<T, K>(model: Model<T>, constr: SomeKeysRequired<T, K>): Arbitrary<{ [K in string | number | symbol]: (Partial<T> & Pick<T, K & keyof T>)[K] }>
+function record<T, K extends string | number | symbol>(model: Model<T>, constr: SomeKeysRequired<T, K>): Arbitrary<{ [K in string | number | symbol]: (Partial<T> & Pick<T, K & keyof T>)[K] }>
 ```
 like `fc.record`, but with
 - `noNullPrototype` _true_ by default
